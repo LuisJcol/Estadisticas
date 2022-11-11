@@ -23,8 +23,8 @@ export default function Login() {
 
 			const token = await makeLoginData(usuario, password);
 			console.log("token", token);
-			// signIn(res);
-			// window.localStorage.setItem("token", res)
+			signIn(token);
+			window.localStorage.setItem("token", token)
 		}
 		setLoader(false);
 	}

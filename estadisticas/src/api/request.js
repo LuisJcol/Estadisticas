@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 
 
 export async function makeRegisterData(jsn) {  
@@ -38,7 +37,7 @@ export const makeLoginData = async (usuario, password) => {
       data = (response.data[0].rol);
     })
     .catch(error => console.log("Error = ", error))
-    
+
   return data;
 }
 
