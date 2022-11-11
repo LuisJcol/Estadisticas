@@ -29,6 +29,7 @@ export default function App() {
 	}
 
 	const loginReducer = (prevState, action) => {
+		// eslint-disable-next-line default-case
 		switch (action.type) {
 			case 'RESTORE_TOKEN':
 				return {

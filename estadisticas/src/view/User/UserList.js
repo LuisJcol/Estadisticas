@@ -1,19 +1,18 @@
 import { Container, Row, Col, Table, Modal } from "react-bootstrap";
 //import { getUsers } from "../../api/request";
-import { useForm } from "react-hook-form";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import Sidebar from "../../components/Sidebar";
+
 import * as FaIcons from 'react-icons/fa';
 import { useEffect, useState } from "react";
+
 import axios from "axios";
 
 
 
 
 const UserList = () => {
-    const { register, getValues } = useForm();
     // Consulta para lista de usuarios
     const baseUrl = "http://localhost/Backend2/index.php?c=usuarios&a=ver";
 
@@ -63,7 +62,7 @@ const UserList = () => {
 
     const Edit = async event => {
         let user = await data.find(user => user.id === parseInt(event.target.id));
-
+        console.log(user);
         handleShow();
     }
 
