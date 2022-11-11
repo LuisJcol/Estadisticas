@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 
 
 export async function makeRegisterData(jsn) {  
@@ -25,24 +26,20 @@ export async function makeRegisterData(jsn) {
 //         return '3030401c-c5a5-43c8-8b73-2ab9e6f2ca22';
 // }
 
-export async function makeLoginData(jsn) {
-  try {
-    const res = await axios.post(
-      `http://localhost/Backend2/index.php?c=usuarios&a=login`, 
-      jsn, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials':true,
-          'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
-          'token': '3030401c-c5a5-43c8-8b73-2ab9e6f2ca22'
-        }
-      });
-    return res.data;
-  }
-  catch(err){
-    return err.response;
-  }
+export const makeLoginData = async (usuario, password) => {
+  let data = null;
+  
+  var f = new FormData();
+  f.append("usuario", usuario);
+  f.append("contrasena", password);
+
+  await axios.post("http://localhost/Backend2/index.php?c=usuarios&a=login", f)
+    .then(response => {
+      data = (response.data[0].rol);
+    })
+    .catch(error => console.log("Error = ", error))
+    
+  return data;
 }
 
 export async function getUsers(){

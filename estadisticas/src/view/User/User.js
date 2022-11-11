@@ -16,7 +16,7 @@ const User = () => {
 	const baseUrl = "http://localhost/Backend2/index.php?c=roles&a=ver";
 	const baseUrl2 = "http://localhost/Backend2/index.php?c=personas&a=ver";
 	const baseUrl3 = "http://localhost/Backend2/index.php?c=usuarios&a=guardar";
-	
+
 	const [datapersonas, setDataPersonas] = useState([]);
 	const [dataroles, setDataRoles] = useState([]);
 	// const [selected, setSelected] = useState({
@@ -60,11 +60,6 @@ const User = () => {
 		f.append("password", data.password);
 		f.append("idpersona", data.idpersona);
 		f.append("rol", data.idrol);
-
-		console.log("usuario ==>", data.usuario);
-		console.log("selected.password ==>", data.password);
-		console.log("selected.idpersona ==>", data.idpersona);
-		console.log("selected.idrol ==>", data.idrol);
 
 		await axios.post(baseUrl3, f)
 			.then(response => {
