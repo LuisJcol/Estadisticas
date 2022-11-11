@@ -146,7 +146,7 @@ const PermisologyUser = () => {
                             <select id="idrol" name="idrol"  className="form-control">
                                 <option value={0}></option>
                                 {dataroles.map(roles=>(
-                                    <option key={roles.id} value={roles.id}>{roles.rol}</option>
+                                    <option key={roles.idrol} value={roles.idrol}>{roles.rol}</option>
                                 ))}
                             </select><br/>
                         </div>
