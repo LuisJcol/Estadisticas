@@ -11,9 +11,9 @@ import PieChart from "../../components/PieChart";
 const Report = () => {
 
     const baseUrl = "http://localhost/Backend2/index.php?c=escuelas&a=verFacultades";
-    const baseUrl2 = "http://localhost/Backend2/index.php?c=escuelas&a=verEscuela";
+    // const baseUrl2 = "http://localhost/Backend2/index.php?c=escuelas&a=verEscuela";
     const baseUrl3 = "http://localhost/Backend2/index.php?c=periodos&a=verPeriodo";
-    const [data, setData]=useState([]);
+    // const [data, setData]=useState([]);
     const [datafacultades, setDataFacultades]=useState([]);
     const [dataescuela, setDataEscuela]=useState([]);
     const [dataperiodos, setDataPeriodo]=useState([]);

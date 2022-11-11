@@ -16,7 +16,7 @@ const User = () => {
 	const baseUrl = "http://localhost/Backend2/index.php?c=roles&a=ver";
 	const baseUrl2 = "http://localhost/Backend2/index.php?c=personas&a=ver";
 	const baseUrl3 = "http://localhost/Backend2/index.php?c=usuarios&a=guardar";
-	const [data, setData] = useState([]);
+	
 	const [datapersonas, setDataPersonas] = useState([]);
 	const [dataroles, setDataRoles] = useState([]);
 	// const [selected, setSelected] = useState({
@@ -68,8 +68,7 @@ const User = () => {
 
 		await axios.post(baseUrl3, f)
 			.then(response => {
-				setData(response.data);
-				console.log(response.data);
+				console.log("Success");
 			})
 			.catch(error => console.log("Error = ", error))
 	}

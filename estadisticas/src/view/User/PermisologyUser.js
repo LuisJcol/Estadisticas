@@ -102,8 +102,8 @@ const PermisologyUser = () => {
                                             <td>{usuarios.usuario}</td>
                                             <td>{usuarios.rol}</td>
                                             <td>{usuarios.estado_usuario}</td>
-                                            <td><a href="#" onClick={handleShow} className="btn btn-primary"><FaIcons.FaUserEdit></FaIcons.FaUserEdit></a></td>
-                                            <td><a className="btn btn-danger"><FaIcons.FaTrash></FaIcons.FaTrash></a></td>
+                                            <td><button onClick={handleShow} className="btn btn-primary"><FaIcons.FaUserEdit></FaIcons.FaUserEdit></button></td>
+                                            <td><button className="btn btn-danger"><FaIcons.FaTrash></FaIcons.FaTrash></button></td>
                                         </tr>
                                     ))}
                                     

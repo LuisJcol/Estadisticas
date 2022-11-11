@@ -1,6 +1,6 @@
 import React, { useContext} from "react";
 import { Link} from "react-router-dom";
-import { Navbar, NavItem, NavDropdown , Offcanvas, Nav, Container, Button} from "react-bootstrap";
+import { Navbar, NavDropdown , Offcanvas, Nav, Container} from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
 import { FaLock, FaUser, FaListAlt, FaHome } from "react-icons/fa";
 
