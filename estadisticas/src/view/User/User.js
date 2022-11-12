@@ -63,11 +63,11 @@ const User = () => {
 		f.append("usuario", data.usuario);
 		f.append("password", data.password);
 		f.append("idpersona", data.idpersona);
-		f.append("rol", data.idrol);
+		f.append("idrol", data.idrol);
 
 		await axios.post(baseUrl3, f)
 			.then(response => {
-				console.log("Success");
+				console.log("response", response);
 			})
 			.catch(error => console.log("Error = ", error))
 	}
@@ -142,6 +142,7 @@ const User = () => {
 						<form onSubmit={handleSubmit(registrarUsuarios)} className="form-group">
 							<label>Nombre de Usuario:</label><br />
 							<input id="usuario" name="usuario" type="text" className="form-control" {...register("usuario")} />
+							<label>Persona:</label><br />
 							<select id="idpersona" name="idpersona" className="form-control" {...register("idpersona")}>
 								<option value={0}></option>
 								{datapersonas.map(personas => (
