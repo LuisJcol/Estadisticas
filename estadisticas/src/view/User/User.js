@@ -146,7 +146,7 @@ const User = () => {
 							<select id="idpersona" name="idpersona" className="form-control" {...register("idpersona")}>
 								<option value={0}></option>
 								{datapersonas.map(personas => (
-									<option key={personas.id} value={personas.id}>{personas.primerNombre}</option>
+									<option key={personas.id} value={personas.id}>{personas.primerNombre} {personas.primerApellido}</option>
 								))}
 							</select>
 							{/* <label>Correo Electronico:</label><br />
