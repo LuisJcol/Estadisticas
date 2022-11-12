@@ -1,6 +1,6 @@
 import React, { useContext} from "react";
 import { Link} from "react-router-dom";
-import { Navbar, NavDropdown , Offcanvas, Nav, Container} from "react-bootstrap";
+import { Navbar, NavItem, NavDropdown , Offcanvas, Nav, Container, Button} from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
 import { FaLock, FaUser, FaListAlt, FaHome } from "react-icons/fa";
 
@@ -24,7 +24,7 @@ export default function Header(){
           {[false].map((expand) => (
         <Navbar key={expand}  expand={expand} className="mb-3 navbarcss">
           <Container fluid>
-            <Navbar.Brand href="#"> <img
+            <Navbar.Brand as={Link} to="/Home"> <img
                         alt="Restaurant Tu Hogar"
                         src="https://www.urbe.edu/images/logo-urbe.gif"
                         width="30"

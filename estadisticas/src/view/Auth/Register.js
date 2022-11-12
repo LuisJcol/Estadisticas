@@ -22,7 +22,7 @@ export default function Register(){
         }else if(password === ""){
             alert("El campo contrasena no puede estar vacio")
         }else{
-            console.log(email, password);
+            // console.log(email, password);
         }
 
         const name = firstName + ' '+ lastName;
@@ -35,7 +35,7 @@ export default function Register(){
           }
       
           const res = await makeRegisterData(jsn);
-          console.log(res)
+        //   console.log(res)
 
 
         setLoader(false);

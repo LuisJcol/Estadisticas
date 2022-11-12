@@ -11,9 +11,9 @@ import PieChart from "../../components/PieChart";
 const Report = () => {
 
     const baseUrl = "http://localhost/Backend2/index.php?c=escuelas&a=verFacultades";
-    // const baseUrl2 = "http://localhost/Backend2/index.php?c=escuelas&a=verEscuela";
+    const baseUrl2 = "http://localhost/Backend2/index.php?c=escuelas&a=verEscuela";
     const baseUrl3 = "http://localhost/Backend2/index.php?c=periodos&a=verPeriodo";
-    // const [data, setData]=useState([]);
+    const [data, setData]=useState([]);
     const [datafacultades, setDataFacultades]=useState([]);
     const [dataescuela, setDataEscuela]=useState([]);
     const [dataperiodos, setDataPeriodo]=useState([]);
@@ -22,11 +22,12 @@ const Report = () => {
         await axios.get(baseUrl)
         .then(response=>{
             setDataFacultades(response.data)
+            
         })
     }
 
     const getEscuela = async()=>{
-        await axios.get(baseUrl)
+        await axios.get(baseUrl2)
         .then(response=>{
             setDataEscuela(response.data)
         })
@@ -53,27 +54,7 @@ const Report = () => {
                         
                         <Col xl="12" md="10" lg="10" sm="8">
                             <Row>
-                                <form>
-                                    <select className="form-control" name="facultad" id="facultad">
-                                        <option value={0}>Seleccione una opcion</option>
-                                        {datafacultades.map(facultad=>(
-                                            <option key={facultad.id_facultad} value={facultad.id_facultad}>{facultad.facultad}</option>
-                                        ))}
-                                    </select> <br/>
-                                    <select className="form-control" name="escuela" id="escuela">
-                                        <option value={0}>Seleccione una opcion</option>
-                                        {dataescuela.map(escuela=>(
-                                            <option key={escuela.id_escuela} value={escuela.id_escuela}>{escuela.escuela}</option>
-                                        ))}
-                                    </select><br/>
-                                    <select className="form-control" name="periodo" id="periodo">
-                                        <option value={0}>Seleccione una opcion</option>
-                                        {dataperiodos.map(periodo=>(
-                                            <option key={periodo.id_periodo} value={periodo.id_periodo}>{periodo.abreviatura_periodo}</option>
-                                        ))}
-                                    </select>
-
-                                </form>
+                                <h2 className="text-center">Inscripciones de Estudiantes Periodo Septiembre - Diciembre 2022</h2>
                             </Row>
                             
                             

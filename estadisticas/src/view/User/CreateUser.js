@@ -1,5 +1,5 @@
-import { Container, Row, Col, Card } from "react-bootstrap";
-import * as FaIcons from 'react-icons/fa';
+// import { Container, Row, Col, Card} from "react-bootstrap";
+// import * as FaIcons from 'react-icons/fa';
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -7,14 +7,14 @@ import Footer from "../../components/Footer";
 
 const CreateUser = () => {
 
+   
 
 
-
-    return (
+    return(
         <>
-            <Header />
-            <div className="flex">
-
+            <Header/>
+            {/* <div className="flex">
+                
                 <Container>
                     <Row className="mt-5">
                         <Col md="2">
@@ -23,34 +23,34 @@ const CreateUser = () => {
                             <Card className="Card">
                                 <Card.Body>
                                     <div className="text-center">
-                                        <Card.Title className="text-center Card-title-text">Registro de Usuarios</Card.Title>
+                                        <Card.Title className="text-center Card-title-text">Registro de Usuarios</Card.Title>  
                                     </div>
                                     <label>Nombres:</label>
-                                    <input className="form-control" typeof="text" />
+                                    <input className="form-control" typeof="text"/>
                                     <label>Apellidos:</label>
-                                    <input className="form-control" typeof="text" />
+                                    <input className="form-control" typeof="text"/>
                                     <label>Nombre de Usuario:</label>
-                                    <input className="form-control" typeof="text" />
+                                    <input className="form-control" typeof="text"/>
                                     <label>Correo Electronico:</label>
-                                    <input className="form-control" typeof="email" />
+                                    <input className="form-control" typeof="email"/>
                                     <label>Contrasena:</label>
-                                    <input className="form-control" typeof="password" />
+                                    <input className="form-control" typeof="password"/>
                                     <label>Repetir Contrasena:</label>
-                                    <input className="form-control" typeof="password" />
+                                    <input className="form-control" typeof="password"/>
                                     <div className="text-center mt-3">
                                         <Row>
                                             <Col md="3">
-
+                                            
                                             </Col>
                                             <Col md="3">
-                                                <button className="btn btn-success">
-                                                    <FaIcons.FaCheck></FaIcons.FaCheck> Registrar
-                                                </button>
+                                                <a href="#" className="btn btn-success">
+                                                <FaIcons.FaCheck></FaIcons.FaCheck> Registrar
+                                                </a>
                                             </Col>
                                             <Col md="3">
-                                                <button className="mr-2 btn btn-danger">
-                                                    <FaIcons.FaTrash></FaIcons.FaTrash> Borrar
-                                                </button>
+                                                <a href="#" className="mr-2 btn btn-danger">
+                                                <FaIcons.FaTrash></FaIcons.FaTrash> Borrar
+                                                </a>
                                             </Col>
                                         </Row>
                                     </div>
@@ -58,10 +58,10 @@ const CreateUser = () => {
                             </Card>
                         </Col>
                     </Row>
-
+                    
                 </Container>
-            </div>
-            <Footer />
+            </div> */}
+            <Footer/>
         </>
     );
 }
