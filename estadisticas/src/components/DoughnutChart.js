@@ -11,6 +11,7 @@ export default function DoughnutChart(props) {
 
   useEffect(() => {
     showData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const showData = () => {
