@@ -59,11 +59,11 @@ const User = () => {
 		f.append("usuario", data.usuario);
 		f.append("password", data.password);
 		f.append("idpersona", data.idpersona);
-		f.append("rol", data.idrol);
+		f.append("idrol", data.idrol);
 
 		await axios.post(baseUrl3, f)
 			.then(response => {
-				console.log("Success");
+				console.log("response", response);
 			})
 			.catch(error => console.log("Error = ", error))
 	}
