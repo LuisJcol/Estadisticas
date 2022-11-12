@@ -92,9 +92,6 @@ const PermisologyUser = () => {
 
     const modificarUsuarios = async data => {
 
-        if(estado === ''){
-            alert("El campo de estado de usuario no puede estar vacio");
-        } else {
             var f = new FormData();
             f.append("usuario", data.usuario);
             f.append("password", data.password);
@@ -111,7 +108,7 @@ const PermisologyUser = () => {
                 .catch(error => console.log("Error = ", error))
     
                 handleClose()
-        }
+        
        
     }
 
