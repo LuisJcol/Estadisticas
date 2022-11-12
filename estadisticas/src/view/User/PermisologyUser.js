@@ -92,8 +92,12 @@ const PermisologyUser = () => {
 
     const modificarUsuarios = async data => {
 
+        if(estado === ''){
+            alert("El campo de estado de usuario no puede estar vacio");
+        } else {
             var f = new FormData();
             f.append("usuario", data.usuario);
+            f.append("id_persona", data.idpersona);
             f.append("password", data.password);
             f.append("estado_usuario", data.estado_usuario);
             f.append("id_rol", data.id_rol);
@@ -108,7 +112,7 @@ const PermisologyUser = () => {
                 .catch(error => console.log("Error = ", error))
     
                 handleClose()
-        
+        }
        
     }
 
@@ -164,9 +168,9 @@ const PermisologyUser = () => {
                         <form onSubmit={handleSubmit(modificarUsuarios)} className="form-group">
                          <label>Nombre de Usuario:</label><br/> 
                          <input id="usuario" name="usuario" value={usuario} type="text" hidden={true} placeholder={usuario}  className="form-control" onChange={(e)=>setUsuario(e.target.value)} {...register("usuario")}/>
-                            <input id="usuario" name="usuario" value={username} type="text" placeholder={username} disabled={true}  className="form-control" />
+                            <input id="username" name="username" value={username} type="text" placeholder={username} disabled={true}  className="form-control" />
                             <label>Nombre:</label><br/> 
-                            <input id="persona" name="persona" value={persona} type="text" placeholder={persona} disabled={true} className="form-control" {...register("idpersona")}/>
+                            <input id="persona" name="persona" value={persona} type="text" placeholder={persona} disabled={true} onChange={(e)=>setPersona(e.target.value)} className="form-control" />
                             <label>Estado</label><br/>
                             <select id="estado_usuario" name="estado_usuario" className="form-control" onChange={(e)=>setEstado(e.target.value)} {...register("estado_usuario", {required: "El estado es requerido"})} >
                                 <option value=''></option>
