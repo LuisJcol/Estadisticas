@@ -35,7 +35,7 @@ export default function Register(){
           }
       
           const res = await makeRegisterData(jsn);
-        //   console.log(res)
+          console.log(res)
 
 
         setLoader(false);
