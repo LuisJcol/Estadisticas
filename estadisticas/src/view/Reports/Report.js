@@ -18,22 +18,22 @@ const Report = () => {
 	const baseUrl3 = "http://localhost/Backend2/index.php?c=periodos&a=verPeriodo";
 	// const [data, setData]=useState([]);
 
-	// const dataEscuelas = [
-	// 	{ escuela: "Informatica" },
-	// 	{ escuela: "Industrial" },
-	// 	{ escuela: "Telecomunicaciones" },
-	// 	{ escuela: "Automatizacion" },
-	// 	{ escuela: "Audiovisual" },
-	// 	{ escuela: "Periodismo" },
-	// 	{ escuela: "RelacionesPublicas" },
-	// 	{ escuela: "Contaduria" },
-	// 	{ escuela: "AdmEmpresas" },
-	// 	{ escuela: "Mercadeo" },
-	// 	{ escuela: "BancaSeguros" },
-	// 	{ escuela: "RelacionesIndustriales" },
-	// 	{ escuela: "Derecho" },
-	// 	{ escuela: "Diseno" }
-	// ];
+	const dataEscuelas = [
+		{ escuela: "Informatica" },
+		{ escuela: "Industrial" },
+		{ escuela: "Telecomunicaciones" },
+		{ escuela: "Automatizacion" },
+		{ escuela: "Audiovisual" },
+		{ escuela: "Periodismo" },
+		{ escuela: "RelacionesPublicas" },
+		{ escuela: "Contaduria" },
+		{ escuela: "AdmEmpresas" },
+		{ escuela: "Mercadeo" },
+		{ escuela: "BancaSeguros" },
+		{ escuela: "RelacionesIndustriales" },
+		{ escuela: "Derecho" },
+		{ escuela: "Diseno" }
+	];
 
 	const [datafacultades, setDataFacultades] = useState([]);
 	const [dataperiodos, setDataPeriodo] = useState([]);
@@ -41,7 +41,7 @@ const Report = () => {
 
 	const [modo, setModo] = useState("")
 	const [facultadSelected, setFacultadSelected] = useState("");
-	const [periodoSelected, setPeriodoSelected] = useState(0);
+	const [periodoSelected, setPeriodoSelected] = useState("");
 
 	const getFacultad = async () => {
 		await axios.get(baseUrl)
@@ -53,8 +53,7 @@ const Report = () => {
 	const getInscripcionEscuela = async () => {
 		await axios.get(baseUrl2)
 			.then(response => {
-				console.log(response.data)
-				setInscripcionEscuela(response.data)
+				setInscripcionEscuela(response.data);
 			})
 
 	}
@@ -67,13 +66,30 @@ const Report = () => {
 	}
 
 	const Modalidad = event => setModo(event.target.value);
-	const SelectFacultad = event => setFacultadSelected(event.target.value);
 	const SelectPeriodo = event => setPeriodoSelected(event.target.value);
+
+
+	const SelectFacultad = async event => {
+		if (modo !== "facultad") {
+			await axios.get(`http://localhost/Backend2/index.php?c=inscripciones&a=verEstudiantes${event.target.value}`)
+				.then(response => {
+					setInscripcionEscuela(response.data);
+				})
+		}
+		setFacultadSelected(event.target.value);
+	}
+
 
 	useEffect(() => {
 		getFacultad();
 		getInscripcionEscuela();
 		getPeriodo();
+	}, [])
+
+	useEffect(() => {
+		setFacultadSelected("");
+		setInscripcionEscuela("");
+		setPeriodoSelected("");
 	}, [])
 
 	return (
@@ -102,31 +118,31 @@ const Report = () => {
 									<br />
 								</>}
 
-								{/* {modo === "escuela" && <>
+								{modo === "escuela" && <>
 									<select className="form-control" name="facultad" id="facultad" onChange={SelectFacultad}>
 										<option value={0}>Seleccione una Escuela</option>
 										{dataEscuelas.map(escuela => (
 											<option key={escuela.escuela} value={escuela.escuela}>{escuela.escuela}</option>
 										))}
 									</select><br />
-								</>} */}
+								</>}
 
 
 								{facultadSelected.length > 0 ? <select className="form-control" name="periodo" id="periodo" onChange={SelectPeriodo}>
 									<option value={0}>Seleccione una un Periodo</option>
 									{dataperiodos.map(periodo => (
-										<option key={periodo.id_periodo} value={periodo.id_periodo}>{periodo.abreviatura_periodo}</option>
+										<option key={periodo.id_periodo} value={periodo.abreviatura_periodo}>{periodo.abreviatura_periodo}</option>
 									))}
 								</select> : null}
 							</form>
 						</Row>
 
-						{periodoSelected > 0 ? <Row className="py-5">
+						{periodoSelected.length > 0 ? <Row className="py-5">
 							<Col xl="6" md="6">
-								<DoughnutChart facultades={datafacultades} inscripciones={inscripcionEscuela} message={modo} />
+								<DoughnutChart facultades={datafacultades} facultad={facultadSelected} inscripciones={inscripcionEscuela} message={modo} periodo={periodoSelected} />
 							</Col>
 							<Col xl="6" md="6">
-								<PieChart facultades={datafacultades} inscripciones={inscripcionEscuela} message={modo} />
+								<PieChart facultades={datafacultades} facultad={facultadSelected} inscripciones={inscripcionEscuela} message={modo} periodo={periodoSelected} />
 							</Col>
 						</Row> : null}
 					</Col>
