@@ -57,7 +57,7 @@ export default function App(){
         () => ({
             signIn: async data => {
                 try {
-                    console.log(data);
+                    // console.log(data);
                     window.localStorage.setItem("token", data);
                 }
                 catch(e){

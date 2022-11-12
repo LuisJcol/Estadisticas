@@ -1,7 +1,6 @@
-import { Container, Row, Col, Card} from "react-bootstrap";
-import * as FaIcons from 'react-icons/fa';
+// import { Container, Row, Col, Card} from "react-bootstrap";
+// import * as FaIcons from 'react-icons/fa';
 
-import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -14,7 +13,7 @@ const CreateUser = () => {
     return(
         <>
             <Header/>
-            <div className="flex">
+            {/* <div className="flex">
                 
                 <Container>
                     <Row className="mt-5">
@@ -61,7 +60,7 @@ const CreateUser = () => {
                     </Row>
                     
                 </Container>
-            </div>
+            </div> */}
             <Footer/>
         </>
     );

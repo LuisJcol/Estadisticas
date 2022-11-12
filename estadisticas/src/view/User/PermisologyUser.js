@@ -38,14 +38,14 @@ const PermisologyUser = () => {
             ...prevState,
             [name]: value
         }))
-        console.log(selected);
+        // console.log(selected);
     }
 
     const getRoles=async()=>[
         await axios.get(baseUrl2)
         .then(response=>{
             setDataRoles(response.data);
-            console.log(response.data)
+            // console.log(response.data)
         })
     ]
 
@@ -70,7 +70,25 @@ const PermisologyUser = () => {
     },[])
 
 
-   
+//    const Edit = (id) => {
+//     console.log(id)
+//     handleShow()
+//    }
+
+//    const Edit = async event => {
+//     let user = await data.find(user => user.id === parseInt(event.target.id));
+//     console.log(user);
+//     console.log(event)
+//     handleShow();
+//     }
+
+    const Edit = async id => {
+        let user = await data.find(user => user.id === id);
+        console.log(user);
+        handleShow();
+    }
+
+
     
 
     return(
@@ -91,7 +109,7 @@ const PermisologyUser = () => {
                                         <th>Usuario</th>
                                         <th>Tipo de Usuario</th>
                                         <th>Estado</th>
-                                        <th colSpan={2}>Opciones</th>
+                                        <th>Opcion</th>
                                         
                                     </tr>
                                 </thead>
@@ -102,8 +120,9 @@ const PermisologyUser = () => {
                                             <td>{usuarios.usuario}</td>
                                             <td>{usuarios.rol}</td>
                                             <td>{usuarios.estado_usuario}</td>
-                                            <td><a href="#" onClick={handleShow} className="btn btn-primary"><FaIcons.FaUserEdit></FaIcons.FaUserEdit></a></td>
-                                            <td><a className="btn btn-danger"><FaIcons.FaTrash></FaIcons.FaTrash></a></td>
+                                            <td><button id={usuarios.id} onClick={(e) => Edit(usuarios.id)} className="btn btn-primary"><FaIcons.FaUserEdit></FaIcons.FaUserEdit></button></td>
+
+                                            {/* <td><a className="btn btn-danger"><FaIcons.FaTrash></FaIcons.FaTrash></a></td> */}
                                         </tr>
                                     ))}
                                     
@@ -124,14 +143,16 @@ const PermisologyUser = () => {
                             <label>Nombre de Usuario:</label><br/>
                             <input id="user" name="user" type="text" className="form-control" onChange={handleChange}/>
                             <label>Nombre:</label><br/>
-                            <select id="idpersona" name="idpersona" className="form-control">
+                            <input id="idpersona" name="idpersona" type="text" className="form-control" onChange={handleChange}/>
+
+                            {/* <select id="idpersona" name="idpersona" className="form-control">
                                 <option value={0}></option>
                                 {datapersonas.map(persona=>(
-                                    <option key={persona.id} value={persona.id}>{persona.nombre}</option>
+                                    <option key={persona.id} value={persona.id}>{persona.primerNombre}</option>
                                 ))}
                                 
                                     
-                            </select>
+                            </select> */}
                             <label>Estado</label><br/>
                             <select id="estado" name="estado" className="form-control">
                                 <option value={0}></option>
@@ -146,7 +167,7 @@ const PermisologyUser = () => {
                             <select id="idrol" name="idrol"  className="form-control">
                                 <option value={0}></option>
                                 {dataroles.map(roles=>(
-                                    <option key={roles.id} value={roles.id}>{roles.rol}</option>
+                                    <option key={roles.idrol} value={roles.idrol}>{roles.rol}</option>
                                 ))}
                             </select><br/>
                         </div>

@@ -24,7 +24,7 @@ export default function Header(){
           {[false].map((expand) => (
         <Navbar key={expand}  expand={expand} className="mb-3 navbarcss">
           <Container fluid>
-            <Navbar.Brand href="#"> <img
+            <Navbar.Brand as={Link} to="/Home"> <img
                         alt="Restaurant Tu Hogar"
                         src="https://www.urbe.edu/images/logo-urbe.gif"
                         width="30"

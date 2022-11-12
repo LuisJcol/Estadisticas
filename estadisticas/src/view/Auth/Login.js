@@ -20,14 +20,14 @@ export default function Login(){
         }else if(password === ""){
             alert("El campo contrasena no puede estar vacio")
         }else{
-            console.log(usuario, password)
+            // console.log(usuario, password)
             const  jsn = {
                 'usuario': usuario,
                 'contrasena': password
             }
 
             const res = await makeLoginData(jsn);
-            console.log(res);
+            // console.log(res);
             signIn(res);
 
             window.localStorage.setItem("token",res)
@@ -55,7 +55,7 @@ export default function Login(){
                             />
                             <label className="align-left" >Contraseña:</label>
                             <input className="form-control" 
-                            type="contrasena" 
+                            type="password" 
                             value={password}
                             onChange={(val) => setPassword(val.target.value)}
                             />
