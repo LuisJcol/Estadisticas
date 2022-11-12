@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { Container, Row, Col, Card, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import * as FaIcons from 'react-icons/fa';
 import axios from "axios";
 
-//import Sidebar from "../../components/Sidebar";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
-import { Container, Row, Col, Card, Modal } from "react-bootstrap";
-import * as FaIcons from 'react-icons/fa';
 
 const User = () => {
 	const { register, handleSubmit } = useForm();
@@ -16,17 +16,20 @@ const User = () => {
 	const baseUrl = "http://localhost/Backend2/index.php?c=roles&a=ver";
 	const baseUrl2 = "http://localhost/Backend2/index.php?c=personas&a=ver";
 	const baseUrl3 = "http://localhost/Backend2/index.php?c=usuarios&a=guardar";
-
-	const [datapersonas, setDataPersonas] = useState([]);
 	const [dataroles, setDataRoles] = useState([]);
+	// const [data, setData] = useState([]);
+	const [datapersonas, setDataPersonas] = useState([]);
 	// const [selected, setSelected] = useState({
 	// 	usuario: '',
 	// 	idpersona: '',
 	// 	idrol: '',
-	// 	password: ''
+	// 	correo: '',
+	// 	password: '',
+	// 	guardar: ''
 	// });
 
 	const [show, setShow] = useState(false);
+
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
@@ -43,6 +46,7 @@ const User = () => {
 		await axios.get(baseUrl)
 			.then(response => {
 				setDataRoles(response.data);
+				// console.log(response.data)
 			})
 	]
 
@@ -50,7 +54,7 @@ const User = () => {
 		await axios.get(baseUrl2)
 			.then(response => {
 				setDataPersonas(response.data);
-				//console.log(response.data)
+				// console.log(response.data)
 			})
 	]
 
@@ -68,6 +72,7 @@ const User = () => {
 			.catch(error => console.log("Error = ", error))
 	}
 
+
 	useEffect(() => {
 		getRol();
 		getPersonas();
@@ -76,6 +81,7 @@ const User = () => {
 	return (
 		<>
 			<Header />
+
 			<div className="flex">
 				<Container>
 					<Row className="mt-5">
@@ -95,6 +101,7 @@ const User = () => {
 								</Card.Body>
 							</Card>
 						</Col>
+
 						<Col md="6">
 							<Card className="Card-color" >
 								<Card.Body>
@@ -110,6 +117,7 @@ const User = () => {
 							</Card>
 						</Col>
 					</Row>
+
 					<Row className="mt-3">
 						<Col md="12">
 							<Card className="Card-color" >
@@ -125,38 +133,36 @@ const User = () => {
 								</Card.Body>
 							</Card>
 						</Col>
-
 					</Row>
-
-
 				</Container>
 
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header className="text-center display-6">Registrar Usuarios</Modal.Header>
 					<Modal.Body>
-						<div className="form-group">
+						<form onSubmit={handleSubmit(registrarUsuarios)} className="form-group">
 							<label>Nombre de Usuario:</label><br />
 							<input id="usuario" name="usuario" type="text" className="form-control" {...register("usuario")} />
-							<label>Nombre:</label><br />
-							{datapersonas && <select id="idpersona" name="idpersona" className="form-control" {...register("idpersona")}>
+							<label>Persona:</label><br />
+							<select id="idpersona" name="idpersona" className="form-control" {...register("idpersona")}>
 								<option value={0}></option>
-								{datapersonas.map((persona, index) => (
-									<option key={index} value={persona.id}>{persona.primerNombre + ' ' + persona.segundoNombre + ' ' + persona.primerApellido + ' ' + persona.segundoApellido}</option>
+								{datapersonas.map(personas => (
+									<option key={personas.id} value={personas.id}>{personas.primerNombre}</option>
 								))}
-							</select>}
+							</select>
+							{/* <label>Correo Electronico:</label><br />
+							<input id="correo_electronico" name="correo_electronico" type="text" className="form-control" {...register("correo_electronico")} /> */}
 							<label>Rol:</label><br />
-							{dataroles && <select id="idrol" name="idrol" className="form-control" {...register("idrol")}>
+							<select id="id_rol" name="id_rol" className="form-control" {...register("id_rol")}>
 								<option value={0}></option>
-								{dataroles.map((roles, index) => (
-									<option key={index} value={roles.idrol}>{roles.rol}</option>
+								{dataroles.map(roles => (
+									<option key={roles.id} value={roles.id}>{roles.rol}</option>
 								))}
-							</select>}
+							</select>
 							<label>Contrasena:</label><br />
-							<input id="password" name="password" type="password" className="form-control" {...register("password")} />
+							<input id="pass1" name="pass1" type="password" className="form-control" {...register("contrasena")} />
 							<label>Repetir Contrasena:</label><br />
-							<input id="pass2" name="pass2" type="password" className="form-control" />
-						</div>
-
+							<input id="pass2" name="pass2" type="password" className="form-control" {...register("contrasena2")} />
+						</form>
 					</Modal.Body>
 					<Modal.Footer>
 						<button id="guardar" name="guardar" className="btn btn-primary" onClick={handleSubmit(registrarUsuarios)}>Registrar</button>
